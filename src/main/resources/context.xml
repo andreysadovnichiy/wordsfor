@@ -3,15 +3,15 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
-	<context:annotation-config />
+	<context:annotation-config/>
 
-	<bean class="main.java.com.testcase.wordsfor.DataSourceFileWriter" id="dataTarget"/>
+	<bean class="main.java.com.testcase.wordsfor.output.DataSourceFileWriter" id="dataTarget"/>
 
-	<bean class="main.java.com.testcase.wordsfor.Process" depends-on="dataSource"/>
+	<bean class="main.java.com.testcase.wordsfor.input.DataSourceFileReader" id="dataSource"/>
 
-	<bean class="main.java.com.testcase.wordsfor.DataSourceFileReader" id="dataSource"/>
+	<bean class="main.java.com.testcase.wordsfor.core.Process" depends-on="dataSource"/>
 
-	<bean class="main.java.com.testcase.wordsfor.DictionaryFactory"
+	<bean class="main.java.com.testcase.wordsfor.core.DictionaryFactory"
 		  id="dictionary" factory-method="getInstance">
 		<constructor-arg ref="dataSource"/>
 	</bean>
